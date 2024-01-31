@@ -114,3 +114,16 @@ export async function GET(req: Request) {
     return new Response(JSON.stringify(contact));
   }
 }
+
+export async function OPTIONS(request: Request) {
+  const origin = request.headers.get("origin");
+
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": origin || "*",
+      "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}
