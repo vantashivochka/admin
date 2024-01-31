@@ -123,7 +123,7 @@ export const columns: ColumnDef<Contact>[] = [
           toast.success("Контакт було успішно видалено");
           return data;
         } catch (error) {
-          console.log(error);
+          (error);
           toast.error("Щось пішло не так. Зверніться до адміністратора");
         }
       };

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { getAuthServerSession } from "@/lib/next-auth";
-import { Check, LucideBadgeDollarSign, Users2Icon } from "lucide-react";
+import { Check, HelpCircle, LucideBadgeDollarSign, UserCircle, Users2Icon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
 
@@ -25,7 +25,7 @@ const Navbar: React.FC = async () => {
                   "font-medium inline-flex items-center gap-2 w-full"
                 )}
               >
-                <Users2Icon className="h-5 w-5" />
+                <UserCircle className="h-5 w-5" />
                 <Link href="/clients">Клієнти</Link>
               </li>
               <li
@@ -36,6 +36,15 @@ const Navbar: React.FC = async () => {
               >
                 <LucideBadgeDollarSign className="h-5 w-5" />
                 <Link href="/prices">Ціни</Link>
+              </li>
+              <li
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "font-medium inline-flex items-center gap-2 w-full"
+                )}
+              >
+                <HelpCircle className="h-5 w-5" />
+                <Link href="/questions">Питання</Link>
               </li>
             </ul>
           </nav>

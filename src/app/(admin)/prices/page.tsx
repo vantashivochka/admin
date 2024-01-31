@@ -37,11 +37,11 @@ const Page: React.FC<PageProps> = () => {
           throw new Error();
         }
 
-        console.log(data);
+        (data);
 
         return data as PriceItem[];
       } catch (error) {
-        console.log(error);
+        (error);
       }
     },
   });

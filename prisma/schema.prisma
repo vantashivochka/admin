@@ -52,3 +52,12 @@ model PriceCargo {
   description String?
   price       Int
 }
+
+model Faq {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  question String
+  answer   String
+}
