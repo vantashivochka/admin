@@ -12,7 +12,11 @@ export async function GET(req: Request) {
   const category = searchParams.get("category");
 
   if (category === "cargo") {
-    const priceCargo = await prisma.priceCargo.findMany();
+    const priceCargo = await prisma.priceCargo.findMany({
+      orderBy: {
+        price: "asc",
+      },
+    });
 
     return new Response(JSON.stringify(priceCargo), {
       status: 200,
@@ -23,7 +27,11 @@ export async function GET(req: Request) {
       },
     });
   } else {
-    const priceGarbage = await prisma.priceGarbage.findMany();
+    const priceGarbage = await prisma.priceGarbage.findMany({
+      orderBy: {
+        price: "asc",
+      },
+    });
 
     return new Response(JSON.stringify(priceGarbage), {
       status: 200,
@@ -69,10 +77,13 @@ export async function PATCH(req: Request) {
 
   const { description, price, title }: Body = await req.json();
 
+  if (!category || !id)
+    return new Response("ID or Category not found", { status: 400 });
+
   if (category === "cargo") {
     const isExist = await prisma.priceCargo.findUnique({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
 
@@ -80,7 +91,7 @@ export async function PATCH(req: Request) {
 
     const priceCargo = await prisma.priceCargo.update({
       where: {
-        id: Number(id),
+        id,
       },
       data: {
         description,
@@ -100,7 +111,7 @@ export async function PATCH(req: Request) {
   } else {
     const isExist = await prisma.priceGarbage.findUnique({
       where: {
-        id: Number(id),
+        id,
       },
     });
 
@@ -108,7 +119,7 @@ export async function PATCH(req: Request) {
 
     const priceGarbage = await prisma.priceGarbage.update({
       where: {
-        id: Number(id),
+        id,
       },
       data: {
         description,

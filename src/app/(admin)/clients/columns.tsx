@@ -16,7 +16,7 @@ import axios, { Axios, AxiosError } from "axios";
 import { useQueryClient } from "@tanstack/react-query";
 
 export type Contact = {
-  id: number;
+  id: string;
   phone: string;
   name: string;
   city: string | null;

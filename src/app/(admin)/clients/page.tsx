@@ -3,7 +3,6 @@
 import React from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
 
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import {

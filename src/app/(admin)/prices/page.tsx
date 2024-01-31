@@ -18,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface PageProps {}
 
 export interface PriceItem {
-  id: number;
+  id: string;
   title: string;
   description?: string;
   price: number;

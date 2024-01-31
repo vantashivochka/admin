@@ -22,7 +22,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PriceItem } from "@/app/(admin)/prices/page";
 
 interface PriceCardProps {
-  id: number;
+  id: string;
   title: string;
   description?: string;
   price: number;
@@ -41,7 +41,7 @@ const PriceCard: React.FC<PriceCardProps> = ({
     resolver: zodResolver(PriceValidator),
     defaultValues: {
       title,
-      description,
+      description: description || "",
       price,
     },
   });

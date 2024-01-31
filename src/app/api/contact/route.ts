@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 
 interface Body {
-  id: number;
+  id: string;
   name: string;
   phone: string;
   type: string | null;
@@ -74,9 +74,11 @@ export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
 
+  if (!id) return new Response("ID not found", { status: 400 });
+
   const isExist = await prisma.contactUser.findUnique({
     where: {
-      id: Number(id),
+      id,
     },
   });
 
@@ -84,7 +86,7 @@ export async function DELETE(req: Request) {
 
   const contact = await prisma.contactUser.delete({
     where: {
-      id: Number(id),
+      id,
     },
   });
 
