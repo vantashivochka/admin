@@ -71,6 +71,7 @@ export default function Home() {
       if (data?.error !== "401") {
         router.push(callbackUrl);
         router.refresh();
+        toast.success("Ви успішно увійшли. Ласкаво просимо!");
       }
     },
     onError: (error) => {

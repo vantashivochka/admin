@@ -49,7 +49,14 @@ export default async function RootLayout({
                 </div>
               </>
             )}
-            <div className="col-span-5 mt-28 md:mt-0">{children}</div>
+            <div
+              className={cn("mt-28 md:mt-0", {
+                "md:col-span-6": !session,
+                "md:col-span-5": session,
+              })}
+            >
+              {children}
+            </div>
           </div>
           <Toaster richColors />
         </Providers>
