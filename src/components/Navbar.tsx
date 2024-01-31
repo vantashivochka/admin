@@ -1,7 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { getAuthServerSession } from "@/lib/next-auth";
-import { Check, HelpCircle, LucideBadgeDollarSign, UserCircle, Users2Icon } from "lucide-react";
+import {
+  Check,
+  HelpCircle,
+  LucideBadgeDollarSign,
+  UserCircle,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
 
@@ -50,7 +55,7 @@ const Navbar: React.FC = async () => {
           </nav>
         </div>
 
-        <div className="flex justify-center items-center gap-1 flex-0">
+        <div className="flex justify-center flex-col lg:flex-row items-center gap-1 flex-0">
           <Check className="h-4 w-4 text-green-500" />
           Ви увійшли як{" "}
           <span className="font-semibold">{session.user?.name}</span>

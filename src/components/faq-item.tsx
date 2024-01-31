@@ -80,7 +80,7 @@ const FaqItem: React.FC<FaqItemProps> = ({
   }
 
   return (
-    <AccordionItem value={id}>
+    <AccordionItem className="animate-in fade-in-25" value={id}>
       <AccordionTrigger>{question}</AccordionTrigger>
       <AccordionContent>
         <Card>

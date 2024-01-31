@@ -34,7 +34,7 @@ const Page: React.FC<PageProps> = ({}) => {
   return (
     <div className="my-8">
       <MaxWidthWrapper>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center flex-col gap-4 md:gap-0 md:flex-row justify-between">
           <h2 className="text-2xl font-semibold">База клієнтів</h2>
           <div>
             <Select

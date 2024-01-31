@@ -1,6 +1,6 @@
 import { getAuthServerSession } from "@/lib/next-auth";
 
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
 import "./globals.css";
+import NavbarMobile from "@/components/navbar-mobile";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,16 +35,21 @@ export default async function RootLayout({
       >
         <Providers>
           <div
-            className={cn("grid grid-cols-6 h-full min-h-screen", {
-              "block": !session,
+            className={cn("md:grid grid-cols-6 h-full min-h-screen", {
+              block: !session,
             })}
           >
             {session && (
-              <div className="col-span-1">
-                <Navbar />
-              </div>
+              <>
+                <div className="hidden md:block col-span-1">
+                  <Navbar />
+                </div>
+                <div className="block md:hidden z-[8888]">
+                  <NavbarMobile />
+                </div>
+              </>
             )}
-            <div className="col-span-5">{children}</div>
+            <div className="col-span-5 mt-28 md:mt-0">{children}</div>
           </div>
           <Toaster richColors />
         </Providers>

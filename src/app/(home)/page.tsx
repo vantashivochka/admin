@@ -116,15 +116,19 @@ export default function Home() {
                     <FormItem>
                       <FormLabel>Пароль</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input type="password" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <div className="flex justify-center">
-                  <Button isLoading={isLoginLoading} className="w-full" type="submit">
-                    Зберігти
+                  <Button
+                    isLoading={isLoginLoading}
+                    className="w-full"
+                    type="submit"
+                  >
+                    Увійти
                   </Button>
                 </div>
               </form>

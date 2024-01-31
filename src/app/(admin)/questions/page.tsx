@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import FaqItem from "@/components/faq-item";
 import { Accordion } from "@/components/ui/accordion";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface QuestionItem {
   id: string;
@@ -76,17 +77,25 @@ const Page: React.FC = () => {
     <div className="my-10">
       <MaxWidthWrapper className="flex flex-col gap-6">
         <h2 className="text-2xl font-semibold">Відповіді на запитання</h2>
-        {questions && !!questions.length && (
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
+          {questions && !!questions.length && (
             <Accordion type="single" collapsible>
               {questions.map((faq) => (
                 <FaqItem key={faq.id} {...faq} />
               ))}
             </Accordion>
-          </div>
-        )}
+          )}
+          {isQuestionLoading &&
+            Array(6)
+              .fill(null)
+              .map((_, i) => <Skeleton key={i} className="h-14 w-full" />)}
+        </div>
         <div className="flex flex-col gap-4">
-          <Button onClick={() => setIsCreating(!isCreating)}>
+          <Button
+            isLoading={isQuestionLoading}
+            disabled={isQuestionLoading || isQuestionCreatePending}
+            onClick={() => setIsCreating(!isCreating)}
+          >
             Додати питання
           </Button>
           {isCreating && (
@@ -126,7 +135,11 @@ const Page: React.FC = () => {
                         </FormItem>
                       )}
                     />
-                    <Button isLoading={isQuestionCreatePending} type="submit">
+                    <Button
+                      isLoading={isQuestionCreatePending}
+                      disabled={isQuestionLoading || isQuestionCreatePending}
+                      type="submit"
+                    >
                       Створити
                     </Button>
                   </form>
