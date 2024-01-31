@@ -6,7 +6,7 @@ interface Body {
   password: string;
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<Response | void> {
   const body: Body = await req.json();
 
   const user = await prisma.user.findFirst({
@@ -26,6 +26,6 @@ export async function POST(req: Request) {
 
     return new Response(JSON.stringify(userWithourPass));
   } else {
-    return null;
+    return new Response(null);
   }
 }
