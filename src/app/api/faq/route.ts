@@ -77,5 +77,12 @@ export async function PATCH(req: Request) {
 export async function GET(req: Request) {
   const faq = await prisma.faq.findMany();
 
-  return new Response(JSON.stringify(faq));
+  return new Response(JSON.stringify(faq), {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": origin || "*",
+      "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
 }
