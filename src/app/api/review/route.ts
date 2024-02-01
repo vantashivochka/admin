@@ -77,9 +77,10 @@ export async function DELETE(req: Request) {
 
 export async function GET(req: Request) {
   const review = await prisma.review.findMany();
+  const origin = req.headers.get("origin");
 
   return new Response(JSON.stringify(review), {
-    status: 204,
+    status: 200,
     headers: {
       "Access-Control-Allow-Origin": origin || "*",
       "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
