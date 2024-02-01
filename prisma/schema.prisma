@@ -61,3 +61,13 @@ model Faq {
   question String
   answer   String
 }
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  name   String
+  text   String
+  rating Int
+}

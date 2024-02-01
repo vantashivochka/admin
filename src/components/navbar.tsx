@@ -3,12 +3,17 @@ import Link from "next/link";
 import { getAuthServerSession } from "@/lib/next-auth";
 import {
   Check,
+  DollarSign,
   HelpCircle,
+  Lightbulb,
   LucideBadgeDollarSign,
+  PhoneCall,
   UserCircle,
+  Users2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar: React.FC = async () => {
   const session = await getAuthServerSession();
@@ -30,7 +35,7 @@ const Navbar: React.FC = async () => {
                   "font-medium inline-flex items-center gap-2 w-full"
                 )}
               >
-                <UserCircle className="h-5 w-5" />
+                <PhoneCall className="h-5 w-5" />
                 <Link href="/clients">Клієнти</Link>
               </li>
               <li
@@ -39,7 +44,7 @@ const Navbar: React.FC = async () => {
                   "font-medium inline-flex items-center gap-2 w-full"
                 )}
               >
-                <LucideBadgeDollarSign className="h-5 w-5" />
+                <DollarSign className="h-5 w-5" />
                 <Link href="/prices">Ціни</Link>
               </li>
               <li
@@ -48,17 +53,32 @@ const Navbar: React.FC = async () => {
                   "font-medium inline-flex items-center gap-2 w-full"
                 )}
               >
-                <HelpCircle className="h-5 w-5" />
+                <Lightbulb className="h-5 w-5" />
                 <Link href="/questions">Питання</Link>
+              </li>
+              <li
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "font-medium inline-flex items-center gap-2 w-full"
+                )}
+              >
+                <Users2 className="h-5 w-5" />
+                <Link href="/reviews">Відгуки</Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        <div className="flex justify-center flex-col lg:flex-row items-center gap-1 flex-0">
-          <Check className="h-4 w-4 text-green-500" />
-          Ви увійшли як{" "}
-          <span className="font-semibold">{session.user?.name}</span>
+        <div className="flex-0 flex flex-col gap-2 items-center">
+          <div className="flex items-center gap-2">
+            Тема:
+            <ModeToggle />
+          </div>
+          <div className="flex justify-center flex-col lg:flex-row items-center gap-1">
+            <Check className="h-4 w-4 text-green-500" />
+            Ви увійшли як{" "}
+            <span className="font-semibold">{session.user?.name}</span>
+          </div>
         </div>
       </div>
     </aside>

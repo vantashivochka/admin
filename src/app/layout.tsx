@@ -1,7 +1,7 @@
 import { getAuthServerSession } from "@/lib/next-auth";
 
 import Navbar from "@/components/navbar";
-import Providers from "@/components/Providers";
+import Providers from "@/components/providers/Providers";
 import { Toaster } from "@/components/ui/sonner";
 
 import { Inter } from "next/font/google";

@@ -5,14 +5,19 @@ import MaxWidthWrapper from "./ui/max-width-wrapper";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Button, buttonVariants } from "./ui/button";
 import {
+  DollarSign,
   HelpCircle,
+  Lightbulb,
   LucideBadgeDollarSign,
   Menu,
+  PhoneCall,
   UserCircle,
+  Users2,
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { ModeToggle } from "./mode-toggle";
 
 const NavbarMobile: React.FC = () => {
   const pathname = usePathname();
@@ -23,7 +28,7 @@ const NavbarMobile: React.FC = () => {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 z-[8888] left-0 w-full bg-slate-100 py-6 border-b border-gray-200">
+    <header className="fixed top-0 z-[8888] left-0 w-full bg-slate-100 dark:bg-slate-900 py-6 border-b border-gray-200">
       <MaxWidthWrapper>
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold">Вантажівочка Admin</h2>
@@ -42,7 +47,7 @@ const NavbarMobile: React.FC = () => {
                       "font-medium inline-flex items-center gap-2 w-full"
                     )}
                   >
-                    <UserCircle className="h-5 w-5" />
+                    <PhoneCall className="h-5 w-5" />
                     <Link href="/clients">Клієнти</Link>
                   </li>
                   <li
@@ -51,7 +56,7 @@ const NavbarMobile: React.FC = () => {
                       "font-medium inline-flex items-center gap-2 w-full"
                     )}
                   >
-                    <LucideBadgeDollarSign className="h-5 w-5" />
+                    <DollarSign className="h-5 w-5" />
                     <Link href="/prices">Ціни</Link>
                   </li>
                   <li
@@ -60,8 +65,26 @@ const NavbarMobile: React.FC = () => {
                       "font-medium inline-flex items-center gap-2 w-full"
                     )}
                   >
-                    <HelpCircle className="h-5 w-5" />
+                    <Lightbulb className="h-5 w-5" />
                     <Link href="/questions">Питання</Link>
+                  </li>
+                  <li
+                    className={cn(
+                      buttonVariants({ variant: "ghost" }),
+                      "font-medium inline-flex items-center gap-2 w-full"
+                    )}
+                  >
+                    <Users2 className="h-5 w-5" />
+                    <Link href="/reviews">Відгуки</Link>
+                  </li>
+                  <li
+                    className={cn(
+                      buttonVariants({ variant: "ghost" }),
+                      "font-medium inline-flex items-center gap-2 w-full"
+                    )}
+                  >
+                    Тема:
+                    <ModeToggle />
                   </li>
                 </ul>
               </nav>
