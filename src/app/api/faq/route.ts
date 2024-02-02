@@ -76,9 +76,10 @@ export async function PATCH(req: Request) {
 
 export async function GET(req: Request) {
   const faq = await prisma.faq.findMany();
+  const origin = req.headers.get("origin");
 
   return new Response(JSON.stringify(faq), {
-    status: 204,
+    status: 200,
     headers: {
       "Access-Control-Allow-Origin": origin || "*",
       "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",

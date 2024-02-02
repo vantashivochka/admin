@@ -118,8 +118,7 @@ const PriceCard: React.FC<PriceCardProps> = ({
                       </div>
                       <div className="hidden absolute top-0 right-3 h-10 md:grid place-items-center">
                         <span className="text-sm text-zinc-400">
-                          + {category === "cargo" ? "200" : "100"}₴ грн
-                          вантажівник
+                          + {category === "cargo" ? "200₴/год." : "250₴/куб."}
                         </span>
                       </div>
                       <Input
