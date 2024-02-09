@@ -1,4 +1,6 @@
 import prisma from "@/lib/prisma";
+import axios from "axios";
+import dayjs from "dayjs";
 
 interface Body {
   id: string;
@@ -29,6 +31,18 @@ export async function POST(req: Request) {
       type,
     },
   });
+
+  const notificationTelegram = await axios.get(
+    `https://api.telegram.org/bot${
+      process.env.NEXT_TELEGRAM_TOKEN
+    }/sendMessage?chat_id=${
+      process.env.NEXT_TELEGRAM_CHANNEL
+    }&parse_mode=MarkdownV2&text=
+    ![🟢](tg://emoji?id=5368324170671202286)Новий клієнт!%0A
+    *Час*: ${dayjs(contact.createdAt).format("DD.MM.YYYY HH:mm")}%0A
+    *Ім'я*: ${contact.name}%0A
+    *Телефон*: ${contact.phone}`
+  );
 
   return new Response(JSON.stringify(contact), {
     status: 200,
