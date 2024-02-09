@@ -60,7 +60,7 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 className={cn({
-                  "bg-green-200": row.original.isCalled,
+                  "bg-green-200 dark:bg-green-500": row.original.isCalled,
                 })}
                 data-state={row.getIsSelected() && "selected"}
               >
