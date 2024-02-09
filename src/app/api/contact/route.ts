@@ -38,15 +38,17 @@ export async function POST(req: Request) {
     }/sendMessage?chat_id=${
       process.env.NEXT_TELEGRAM_CHANNEL
     }&parse_mode=markdown&text=
-    🟢 Новий клієнт!%0A*Час*: ${dayjs(contact.createdAt).format(
-      "DD.MM.YYYY HH:mm"
-    )}%0A*Ім'я*: ${contact.name}%0A*Телефон*:\`${contact.phone}\`%0A*Тип*: ${
+    🟢 Новий клієнт!%0A*Час*: ${dayjs(contact.createdAt)
+      .add(2, "hour")
+      .format("DD.MM.YYYY HH:mm")}%0A*Ім'я*: ${contact.name}%0A*Телефон*:\`${
+      contact.phone
+    }\`%0A*Тип*: ${
       contact.category === "garbage" ? "Сміття" : "Речі"
     }%0A%0A_Додаткова інформація_%0A*Тип вантажу*: ${
       contact.type ? contact.type : "не вказано"
-    }%0A*Місто*: ${
-      contact.city ? contact.city : "не вказано"
-    }%0A*Додатково*: ${contact.message ? contact.message : "не вказано"}%0A`
+    }%0A*Місто*: ${contact.city ? contact.city : "не вказано"}%0A*Додатково*: ${
+      contact.message ? contact.message : "не вказано"
+    }%0A`
   );
 
   console.log(notificationTelegram);
