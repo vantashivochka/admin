@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     }&parse_mode=markdown&text=
     🟢 Новий клієнт!%0A*Час*: ${dayjs(contact.createdAt)
       .add(2, "hour")
-      .format("DD.MM.YYYY HH:mm")}%0A*Ім'я*: ${contact.name}%0A*Телефон*:\`${
+      .format("YYYY-MM-DD HH:mm:ss")}%0A*Ім'я*: ${contact.name}%0A*Телефон*:\`${
       contact.phone
     }\`%0A*Тип*: ${
       contact.category === "garbage" ? "Сміття" : "Речі"

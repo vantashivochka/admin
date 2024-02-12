@@ -40,7 +40,7 @@ export const columns: ColumnDef<Contact>[] = [
     header: "Час",
     cell: ({ row }) => {
       return row.getValue("createdAt") ? (
-        dayjs(row.getValue("createdAt")).format("DD.MM.YYYY HH:mm")
+        dayjs(row.getValue("createdAt")).format("YYYY-MM-DD HH:mm:ss")
       ) : (
         <span className="text-muted-foreground">Не вказано</span>
       );
@@ -123,7 +123,7 @@ export const columns: ColumnDef<Contact>[] = [
           toast.success("Контакт було успішно видалено");
           return data;
         } catch (error) {
-          (error);
+          error;
           toast.error("Щось пішло не так. Зверніться до адміністратора");
         }
       };
